@@ -1,13 +1,23 @@
 #
 # Generate a docker container with owamp tools.
-# Used as a base container for owampd and owping containers.
 #
-# The container can then be run either as the owampd daemon
-# or as owping client.
+# Downloads and builds the source found at:
+#   http://software.internet2.edu/sources/owamp/owamp-3.4-10.tar.gz
 #
-# Use # owampd -f -c /owamp to launch the daemon as root user.
-# Eventually we would like to have user controls but let's get
-# it working as root first.
+# Usage:
+#   First argument after container name specifies behavior:
+#     daemon  :  start container as owampd
+#     owping  :  start container as owping
+#
+#   All subsequent arguments are handed to whichever
+#   program is selected.
+#   Results are returned through container's stdio.
+#
+# Daemon-mode Notes:
+#   The daemon is launched as root (using -f) so we are relying on
+#   security and isolation provided by container system!
+#   Also, we use -Z to launch in foreground and keep the container
+#   from exiting.
 #
 # 2018, Chris Misa
 #
@@ -37,5 +47,9 @@ COPY owampd.* ./
 # Configure, make, and install
 RUN cd owamp-* && ./configure && make && make install
 
-# Just give a bash -- manual interaction with container for now
-ENTRYPOINT ["/bin/bash"]
+# Install ntp
+RUN apt-get install -y ntp
+
+# Copy in and execute entrypoint script
+COPY start.sh ./
+ENTRYPOINT ["./start.sh"]
