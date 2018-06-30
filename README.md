@@ -10,7 +10,7 @@ of a standard toolset.
 - [x] owamp
 - [x] traceroute
 - [ ] scamper
-- [ ] yarrp
+- [x] yarrp
 - [x] iperf
 
 # Notes
