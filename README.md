@@ -11,7 +11,7 @@ of a standard toolset.
 - [x] traceroute
 - [ ] scamper
 - [ ] yarrp
-- [ ] iperf
+- [x] iperf
 
 # Notes
 
