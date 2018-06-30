@@ -7,7 +7,7 @@ of a standard toolset.
 # Tools
 
 - [x] ping
-- [ ] owamp
+- [x] owamp
 - [x] traceroute
 - [ ] scamper
 - [ ] yarrp

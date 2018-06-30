@@ -30,7 +30,7 @@
 #     docker run -d -p 861:5000 owamp-debian daemon
 #
 #   Run an owping session from a container (supposing an owampd is running at the given ip):
-#     docker run owamp-debian owping -c 4 172.17.0.2
+#     docker run --rm owamp-debian owping -c 4 172.17.0.2
 #
 # 2018, Chris Misa
 #
