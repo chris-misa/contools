@@ -1,4 +1,4 @@
-# OWAMP (owampd and owping)
+# OWAMP
 
 A debian-based container for running owampd or owping.
 
@@ -30,7 +30,7 @@ Run an owping session from a container (supposing an owampd is running at the gi
 docker run --rm owamp-debian owping -c 4 172.17.0.2
 ```
 
-Execute a test script in the local file ./tests/test1.sh:
+Execute a test script:
 ```
 docker run --rm -v $(pwd)/tests:/tests owamp-debian batch /tests/test1.sh
 ```
@@ -50,6 +50,3 @@ docker run --rm -v $(pwd)/tests:/tests owamp-debian batch /tests/test1.sh
 
 Downloads and builds the source found at:
   http://software.internet2.edu/sources/owamp/owamp-3.4-10.tar.gz
-
-Running daemon as root (insecure ?) with -f.
-Running daemon in foreground (debug -> slower ?) with -Z.
