@@ -1,4 +1,4 @@
-# Ping-debian
+# Ping
 
 A debian-based container for running ping.
 
@@ -22,10 +22,8 @@ docker run --rm ping-debian -c 4 google.com
 
 Run the commands found in the local file ./tests/test1.sh:
 ```
-docker run --rm -v $(pwd)/tests:/tests ping-debian batch tests/test1.sh
+docker run --rm -v $(pwd)/tests:/tests ping-debian batch /tests/test1.sh
 ```
-
-Also see ./tests/
 
 # Notes
 

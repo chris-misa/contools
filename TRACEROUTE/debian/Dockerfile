@@ -1,5 +1,5 @@
 #
-# Generate a dedicated traceroute container
+# Generate a docker container with traceroute
 #
 # The traceroute version in the debian repo seems ok so we use it.
 # netbase included to support -A flag.
@@ -13,4 +13,5 @@ RUN apt-get update
 RUN apt-get install traceroute
 RUN apt-get install netbase
 
-ENTRYPOINT ["traceroute"]
+COPY start.sh /
+ENTRYPOINT ["/start.sh"]
