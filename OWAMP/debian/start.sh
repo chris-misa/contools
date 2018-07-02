@@ -3,7 +3,7 @@
 #
 # Entrypoint for owamp container
 #
-# For documentation see comments in the Dockerfile
+# For documentation see readme
 #
 # 2018, Chris Misa
 #
@@ -31,6 +31,16 @@ owping)
   shift
   owping $@
   echo "owping exited with status $?"
+  ;;
+batch)
+  if [ -z "$2" ]
+  then
+    echo $USAGE
+    exit 1
+  else
+    $2
+    echo "Script returned $?"
+  fi
   ;;
 *)
   echo $USAGE

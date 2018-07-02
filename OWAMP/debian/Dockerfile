@@ -1,36 +1,7 @@
 #
 # Generate a docker container with owamp tools.
 #
-# Downloads and builds the source found at:
-#   http://software.internet2.edu/sources/owamp/owamp-3.4-10.tar.gz
-#
-# Usage:
-#   First argument after container name specifies behavior:
-#     daemon  :  start container as owampd
-#     owping  :  start container as owping
-#
-#   All subsequent arguments are handed to whichever
-#   program is selected.
-#   Results are returned through container's stdio.
-#
-#
-# Daemon-mode Notes:
-#   The daemon is launched as root (using -f) so we are relying on
-#   security and isolation provided by container system!
-#   Also, we use -Z to launch in foreground and keep the container
-#   from exiting.
-#   Apparently owampd is capable of running sessions directly through the default port (861)
-#   so we don't need to expose a full range of testing ports on the container.
-#   There is probably a tradeoff here: exposing a large number of ports slows down docker
-#   and causes problems but forcing all owamp traffic through a single port probably
-#   slows down the owping session.
-#
-# Examples:
-#   Launch a container as the daemon:
-#     docker run -d -p 861:5000 owamp-debian daemon
-#
-#   Run an owping session from a container (supposing an owampd is running at the given ip):
-#     docker run --rm owamp-debian owping -c 4 172.17.0.2
+# For documentation see the readme.
 #
 # 2018, Chris Misa
 #

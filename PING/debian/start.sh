@@ -15,6 +15,7 @@ then
   if [ -z "$2" ]
   then
     echo $USAGE
+    exit 1
   else
     $2
     echo "Script returned $?"
