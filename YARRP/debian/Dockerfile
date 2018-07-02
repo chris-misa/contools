@@ -1,23 +1,7 @@
 #
 # Generate a docker container with yarrp
 #
-# Downloads and build the source found at:
-#   https://www.cmand.org/yarrp/yarrp-0.4.tar.gz
-#
-# Usage:
-#   Pass normal arguments to yarrp after container name.
-#   Since yarrp does not like to use stdout, the best way to
-#   get data in and out is to bind-mount a local directory into the container
-#   using docker run -v <absolute path to local dir>:<path to new dir in container> etc.
-#   You then must hand yarrp the path where this dir is mounted in
-#   the container using -o <path in container to output file>.
-#   The same can be used to supply yarrp with a target list file for the -i flag.
-#
-# Example:
-#   docker run --rm -v $(pwd)/localDir:/data yarrp-debian -o /data/test.yrp 172.17.0.1/24
-#       will write results of yarrping the subnet 172.17.0.1/24 to the file /data/test.yrp
-#       inside the container which corresponds to the the file ./localDir/test.yrp
-#       outside the container.
+# For documentation see readme file.
 #
 # 2018, Chris Misa
 #
@@ -44,9 +28,11 @@ RUN tar xvf yarrp-0.4.tar.gz
 WORKDIR yarrp-0.4
 RUN ./configure
 RUN make
+RUN make install
 
 # Update environment for dynamic linking
 ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
 
 # Set entry point
-ENTRYPOINT ["/yarrp-0.4/yarrp"]
+COPY start.sh /
+ENTRYPOINT ["/start.sh"]
