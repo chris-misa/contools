@@ -9,7 +9,7 @@ of a standard toolset.
 - [x] ping
 - [x] owamp
 - [x] traceroute
-- [ ] scamper
+- [x] scamper
 - [x] yarrp
 - [x] iperf
 
@@ -23,3 +23,4 @@ be reliable in all container contexts.
 
 Only owamp runs ntpd to synchronize the container's clock to network time.
 Perhaps all containers should do this?
+
