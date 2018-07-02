@@ -11,8 +11,8 @@ Batch-in-container
 - [x] owamp
 - [x] traceroute
 - [ ] scamper
-- [ ] yarrp
-- [ ] iperf
+- [x] yarrp
+- [x] iperf
 
 # Notes
 
