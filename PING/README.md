@@ -15,15 +15,15 @@ and sends the results to stdout.
 
 # Examples
 
+Ping google.com four times:
 ```
 docker run --rm ping-debian -c 4 google.com
 ```
-  ...ping google.com four times.
 
+Run the commands found in the local file ./tests/test1.sh:
 ```
 docker run --rm -v $(pwd)/tests:/tests ping-debian batch tests/test1.sh
 ```
-  ...run the commands found in the local file ./tests/test1.sh
 
 # Notes
 
