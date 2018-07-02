@@ -25,6 +25,8 @@ Run the commands found in the local file ./tests/test1.sh:
 docker run --rm -v $(pwd)/tests:/tests ping-debian batch tests/test1.sh
 ```
 
+Also see ./tests/
+
 # Notes
 
 Since there seem to be many, perhaps differing implementations of ping,

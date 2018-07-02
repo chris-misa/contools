@@ -13,6 +13,8 @@ RUN apt-get install -y git gcc make libcap-dev libidn2-0-dev nettle-dev
 
 RUN git clone https://github.com/iputils/iputils.git
 WORKDIR iputils
-RUN make && make install
+RUN make
+RUN ln ./ping /usr/bin/ping
 
-ENTRYPOINT ["ping"]
+COPY start.sh /
+ENTRYPOINT ["/start.sh"]
