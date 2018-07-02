@@ -10,7 +10,7 @@ Batch-in-container
 - [x] ping
 - [x] owamp
 - [x] traceroute
-- [ ] scamper
+- [x] scamper
 - [x] yarrp
 - [x] iperf
 

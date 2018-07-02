@@ -1,6 +1,6 @@
 # Iperf
 
-A debian-based container for running iperf/
+A debian-based container for running iperf
 
 # Usage
 ```

@@ -9,4 +9,5 @@ FROM debian:latest
 RUN apt-get update
 RUN apt-get install -y scamper
 
-ENTRYPOINT ["scamper"]
+COPY start.sh /
+ENTRYPOINT ["/start.sh"]
