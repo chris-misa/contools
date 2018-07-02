@@ -1,8 +1,7 @@
 #
-# Generate a dedicated ping docker container image
+# Generate a docker container with ping
 #
-# The version of ping in the debian repo seems off so we clone iputils
-# and build a fresh version.
+# See README.md for documentation
 #
 # 2018, Chris Misa
 #
@@ -14,6 +13,6 @@ RUN apt-get install -y git gcc make libcap-dev libidn2-0-dev nettle-dev
 
 RUN git clone https://github.com/iputils/iputils.git
 WORKDIR iputils
-RUN make
+RUN make && make install
 
-ENTRYPOINT ["./ping"]
+ENTRYPOINT ["ping"]
