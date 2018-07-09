@@ -1,0 +1,52 @@
+#!/bin/bash
+
+#
+# Script to exercise ping container for docker-slim
+# Tries to do something with each possible flag / option
+#
+# 2018, Chris Misa
+#
+
+TEST_HOST=google.com
+TEST_HOST_V4=216.58.193.78
+TEST_HOST_V6=2607:f8b0:400a:809::200e
+
+BROADCAST_V4=172.17.0.255
+
+BORDER="----------------"
+
+# basics for v4 and v6
+echo "${BORDER}Running basics${BORDER}"
+ping -c 1 -4 $TEST_HOST
+ping -c 1 -4n $TEST_HOST_V4
+ping -c 1 -6 $TEST_HOST
+ping -c 1 -6n $TEST_HOST_V6
+
+# Adaptive mode and time info test
+echo "${BORDER}Running adaptive mode${BORDER}"
+ping -c 5 -AD $TEST_HOST
+
+# broadcast ping
+echo "${BORDER}Pinging a broadcast address${BORDER}"
+ping -c 1 -b $BROADCAST_V4
+
+# socket debug option
+echo "${BORDER}Running with SO_DEBUG${BORDER}"
+ping -c 1 -d -4 $TEST_HOST_V4
+ping -c 1 -d -6 $TEST_HOST_V6
+
+# packet marking
+echo "${BORDER}Running with marked packets${BORDER}"
+ping -c 2 -m 4 -4 $TEST_HOST_V4
+ping -c 2 -m 4 -6 $TEST_HOST_V6
+
+# MTU Discovery
+echo "${BORDER}Running with MTU options${BORDER}"
+ping -M do -c 1 -4 $TEST_HOST_V4
+ping -M want -c 1 -4 $TEST_HOST_V4
+ping -M dont -c 1 -4 $TEST_HOST_V4
+ping -M do -c 1 -6 $TEST_HOST_V6
+ping -M want -c 1 -6 $TEST_HOST_V6
+ping -M dont -c 1 -6 $TEST_HOST_V6
+
+echo "${BORDER}Done with work out${BORDER}"

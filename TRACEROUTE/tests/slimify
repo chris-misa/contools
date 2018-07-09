@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#
+# Script to exercise traceroute container for docker-slim
+# Tries to do something with each possible flag / option
+#
+# 2018, Chris Misa
+#
+
+TEST_HOST=google.com
+TEST_HOST_V4=216.58.193.78
+TEST_HOST_V6=2607:f8b0:400a:809::200e
+
+BORDER="----------------"
+
+echo "${BORDER}Basic operations${BORDER}"
+traceroute -m 5 -4 $TEST_HOST
+traceroute -m 5 -4 $TEST_HOST_V4
+traceroute -m 5 -6 $TEST_HOST
+traceroute -m 5 -6 $TEST_HOST_V6
+
+echo "${BORDER}Using ICMP probes${BORDER}"
+traceroute -m 5 -4 -I $TEST_HOST
+traceroute -m 5 -6 -I $TEST_HOST
+
+echo "${BORDER}Using TCP SYN probes${BORDER}"
+traceroute -m 5 -4 -T $TEST_HOST
+traceroute -m 5 -6 -T $TEST_HOST
+
+# echo "${BORDER}Using DCCP probes${BORDER}"
+# traceroute -m 5 -4 -D $TEST_HOST
+# traceroute -m 5 -6 -D $TEST_HOST
+
+echo "${BORDER}Using socket debug${BORDER}"
+traceroute -m 5 -4 -d $TEST_HOST
+traceroute -m 5 -6 -d $TEST_HOST
+
+echo "${BORDER}Looking up AS's${BORDER}"
+traceroute -m 5 -4 -A $TEST_HOST
+traceroute -m 5 -6 -A $TEST_HOST
+
+echo "${BORDER}Measuring MTUs${BORDER}"
+traceroute -m 5 -4 --mtu $TEST_HOST
+traceroute -m 5 -6 --mtu $TEST_HOST
+
+echo "${BORDER}Looking for back hops${BORDER}"
+traceroute -m 5 -4 --back $TEST_HOST
+traceroute -m 5 -6 --back $TEST_HOST
+
+exit 0

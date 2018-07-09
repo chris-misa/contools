@@ -34,3 +34,8 @@ Need to install netbase for /etc/services to be setup properly
 but docker-slim seems to strip this file.
 The fix is to manually add a version of this file to the files/etc/
 and re-build the slim container from the generated Dockerfile.
+
+# Minification
+
+AS look up has been fixed in .slim image.
+Socket debug option is broken. . .

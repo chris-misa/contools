@@ -19,18 +19,10 @@ Batch-in-container
 Only owamp runs ntpd to synchronize the container's clock to network time.
 Perhaps all containers should do this?
 
+Bash scripts can be read and executed from a bind-mounted directory.
+See container's documention.
+
 # Planning
-
-## Generic Scripting Interface
-
-bash scripts are read and executed from a bind-mounted directory.
-
-The entry point now looks like:
-  1) if 'batch' flag is given, then execute script;
-  2) else pass args as normal to command.
-The script is responsible for deciding what to do with output data:
-dumping on container's stdout or redirecting to a(nother) bind-mounted
-directory.
 
 ## Generate Canonic Docker-slim Test-cases
 
@@ -39,4 +31,20 @@ maximally expose the tool's dependencies to docker-slim.
 Given that there is a batch processing system, these test cases can be
 specified on the command line of docker-slim using, perhaps, --cmd=...
 
+## Experiements
 
+What is the effect of a container on the system's ability to measure delay?
+
+Host -> Network -> Host
+
+Container -> Host -> Network -> Host
+
+Possible Variables:
+  1) Topography
+  2) Network conditions
+  3) Conditions in containerd
+
+Measurements:
+  1) Delay difference observed from in container compared with outside of container
+  2) Re-enforce with timing data from strace
+  3) Re-enforce with timing data from tcpdump

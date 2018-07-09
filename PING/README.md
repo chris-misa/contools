@@ -25,6 +25,10 @@ Run the commands found in the local file ./tests/test1.sh:
 docker run --rm -v $(pwd)/tests:/tests ping-debian batch /tests/test1.sh
 ```
 
+# Slimification
+
+ipv6 remains untested in slim container.
+
 # Notes
 
 Since there seem to be many, perhaps differing implementations of ping,
