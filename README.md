@@ -4,15 +4,17 @@ This repo contains only dockerfiles for setting up 'fat' images of select tools.
 These 'fat' images are to be run through docker-slim to produce lean, quick deployments
 of a standard toolset.
 
+Minified images are collecting at: hub.docker.com/r/chrismisa/contools/
+
 # Progress
 
-Batch-in-container
+Minified and pushed:
 - [x] ping
-- [x] owamp
+- [ ] owamp
 - [x] traceroute
-- [x] scamper
-- [x] yarrp
-- [x] iperf
+- [ ] scamper
+- [ ] yarrp
+- [ ] iperf
 
 # Notes
 
@@ -33,18 +35,7 @@ specified on the command line of docker-slim using, perhaps, --cmd=...
 
 ## Experiements
 
-What is the effect of a container on the system's ability to measure delay?
+### Container Impact
 
-Host -> Network -> Host
-
-Container -> Host -> Network -> Host
-
-Possible Variables:
-  1) Topography
-  2) Network conditions
-  3) Conditions in containerd
-
-Measurements:
-  1) Delay difference observed from in container compared with outside of container
-  2) Re-enforce with timing data from strace
-  3) Re-enforce with timing data from tcpdump
+1. time and space overheads of container system
+2. bias introduced on measurment
