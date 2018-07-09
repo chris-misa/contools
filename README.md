@@ -14,7 +14,7 @@ Minified and pushed:
 - [x] traceroute
 - [ ] scamper
 - [ ] yarrp
-- [ ] iperf
+- [x] iperf
 
 # Notes
 
