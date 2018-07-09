@@ -10,7 +10,7 @@ Minified images are collecting at: hub.docker.com/r/chrismisa/contools/
 
 Minified and pushed:
 - [x] ping
-- [ ] owamp
+- [x] owamp
 - [x] traceroute
 - [ ] scamper
 - [ ] yarrp
@@ -18,8 +18,9 @@ Minified and pushed:
 
 # Notes
 
-Only owamp runs ntpd to synchronize the container's clock to network time.
-Perhaps all containers should do this?
+Docker containers should be directly synchonized with the host's clock.
+It is up to the host environment to provide accurate clocks for those
+tests which might be sensitive to clock issues.
 
 Bash scripts can be read and executed from a bind-mounted directory.
 See container's documention.

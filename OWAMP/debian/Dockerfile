@@ -31,9 +31,6 @@ COPY owampd.* ./
 # Configure, make, and install
 RUN cd owamp-* && ./configure && make && make install
 
-# Install ntp
-RUN apt-get install -y ntp
-
 # Copy in and execute entrypoint script
 COPY start.sh ./
 ENTRYPOINT ["./start.sh"]
