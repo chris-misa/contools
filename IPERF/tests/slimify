@@ -1,0 +1,57 @@
+#!/bin/bash
+
+#
+# Script to exercise iperf container for docker-slim
+# Tries to do something with each possible flag / option
+#
+# 2018, Chris Misa
+#
+
+LOCAL_HOST_V4=127.0.0.1
+LOCAL_HOST_V6=::1
+
+BORDER="----------------"
+
+# Start a server
+echo "${BORDER}Starting server for TCP${BORDER}"
+iperf -sDV 2>&1 >/dev/null | grep "process ID :" | sed -E "s/[^0-9]* ([0-9]+)/\1/" > iperf_proc_num
+echo Daemon process ID: $(cat iperf_proc_num)
+
+# ipv4
+echo "${BORDER}Running basic ipv4${BORDER}"
+iperf -c $LOCAL_HOST_V4
+
+# ipv6
+echo "${BORDER}Running basic ipv6${BORDER}"
+iperf -V -c $LOCAL_HOST_V6
+
+# parallel test
+echo "${BORDER}Running in parallel (2 threads)${BORDER}"
+iperf -c $LOCAL_HOST_V4 -P 2
+
+# enhanced info to file
+echo "${BORDER}Running to a file${BORDER}"
+iperf -e -o tempTest -c $LOCAL_HOST_V4
+
+# kill daemon
+echo "${BORDER}Killing the daemon${BORDER}"
+kill $(cat iperf_proc_num)
+
+# restart daemon in UDP mode
+echo "${BORDER}Starting server for UDP${BORDER}"
+iperf -sDVu 2>&1 >/dev/null | grep "process ID :" | sed -E "s/[^0-9]* ([0-9]+)/\1/" > iperf_proc_num
+
+# ipv4 UDP
+echo "${BORDER}Running basic UDP on ipv4${BORDER}"
+iperf -u -c $LOCAL_HOST_V4
+
+# ipv6 UDP
+echo "${BORDER}Running basic UDP ipv6${BORDER}"
+iperf -uV -c $LOCAL_HOST_V6
+
+# kill daemon
+echo "${BORDER}Killing the daemon${BORDER}"
+kill $(cat iperf_proc_num)
+
+echo "${BORDER}Done with work out${BORDER}"
+

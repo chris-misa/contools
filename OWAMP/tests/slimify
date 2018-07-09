@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#
+# Script to exercise owamp container for docker-slim
+# Launches daemon and runs some sessions in the localhost
+#
+# 2018, Chris Misa
+#
+
+BORDER="----------------"
+LOCAL_HOST_V4=127.0.0.1
+LOCAL_HOST_V6="::1"
+
+# Start the daemon
+echo "${BORDER}Starting Daemon${BORDER}"
+owampd -f -c /owamp
+
+# Make sure the daemon didn't complain
+RESULT=$?
+if [ $RESULT -ne 0 ]
+then
+  echo "owampd exited with non-zero status: $RESULT"
+  exit 1
+fi
+
+# ipv4 session
+echo "${BORDER}Starting a ipv4 sesson${BORDER}"
+owping -4 $LOCAL_HOST_V4
+
+# ipv6 session
+echo "${BORDER}Starting a ipv6 sesson${BORDER}"
+owping -6 $LOCAL_HOST_V6
+
+# session to file
+echo "${BORDER}Running a session to file${BORDER}"
+owping -p $LOCAL_HOST_V4
+
+echo "${BORDER}Done with work out${BORDER}"
