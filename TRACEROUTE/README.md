@@ -32,10 +32,8 @@ as it seems to conform with standard versions.
 
 Need to install netbase for /etc/services to be setup properly
 but docker-slim seems to strip this file.
-The fix is to manually add a version of this file to the files/etc/
-and re-build the slim container from the generated Dockerfile.
 
-# Minification
+# Slimification
 
-AS look up has been fixed in .slim image.
+AS look up has been fixed in .slim image by adding generic /etc/services
 Socket debug option is broken. . .

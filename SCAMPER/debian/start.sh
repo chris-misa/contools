@@ -20,5 +20,5 @@ then
   fi
 else
   scamper $@
-  echo "Ping returned $?"
+  echo "scamper returned $?"
 fi

@@ -15,6 +15,11 @@ and sends the results to stdout.
 
 # Examples
 
+# Slimmification
+
+Dependencies removed by docker-slim and manually added:
+
+
 # Notes
 
 Uses the default version of scamper found in the debian repository.

@@ -10,9 +10,7 @@
 
 TEST_HOST=google.com
 TEST_HOST_V4=216.58.193.78
-TEST_HOST_V6=2607:f8b0:400a:809::200e
-
-BROADCAST_V4=172.17.0.255
+TEST_HOST_V6=::1 # using loop back for now since containers have a hard time getting out on ipv6
 
 BORDER="----------------"
 
@@ -25,12 +23,12 @@ scamper -I "trace -P TCP -m 5 $TEST_HOST_V4"
 scamper -I "trace -P TCP-ACK -m 5 $TEST_HOST_V4"
 
 echo "${BORDER}Doing some ipv6 traces${BORDER}"
-scamper -I "trace -P UDP -m 5 $TEST_HOST_V6"
-scamper -I "trace -P ICMP -m 5 $TEST_HOST_V6"
-scamper -I "trace -P UDP-paris -m 5 $TEST_HOST_V6"
-scamper -I "trace -P ICMP-paris -m 5 $TEST_HOST_V6"
-scamper -I "trace -P TCP -m 5 $TEST_HOST_V6"
-scamper -I "trace -P TCP-ACK -m 5 $TEST_HOST_V6"
+scamper -I "trace -P UDP -m 1 $TEST_HOST_V6"
+scamper -I "trace -P ICMP -m 1 $TEST_HOST_V6"
+scamper -I "trace -P UDP-paris -m 1 $TEST_HOST_V6"
+scamper -I "trace -P ICMP-paris -m 1 $TEST_HOST_V6"
+scamper -I "trace -P TCP -m 1 $TEST_HOST_V6"
+scamper -I "trace -P TCP-ACK -m 1 $TEST_HOST_V6"
 
 echo "${BORDER}Doing some ipv4 pings${BORDER}"
 scamper -I "ping -c 2 -P icmp-echo $TEST_HOST_V4"
