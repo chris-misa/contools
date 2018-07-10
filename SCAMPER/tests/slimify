@@ -1,0 +1,53 @@
+#!/bin/bash
+
+#
+# Script to exercise scamper container for docker-slim
+# Runs traceroutes and pings only.
+# Perhaps we will need more later.
+#
+# 2018, Chris Misa
+#
+
+TEST_HOST=google.com
+TEST_HOST_V4=216.58.193.78
+TEST_HOST_V6=2607:f8b0:400a:809::200e
+
+BROADCAST_V4=172.17.0.255
+
+BORDER="----------------"
+
+echo "${BORDER}Doing some ipv4 traces${BORDER}"
+scamper -I "trace -P UDP -m 5 $TEST_HOST_V4"
+scamper -I "trace -P ICMP -m 5 $TEST_HOST_V4"
+scamper -I "trace -P UDP-paris -m 5 $TEST_HOST_V4"
+scamper -I "trace -P ICMP-paris -m 5 $TEST_HOST_V4"
+scamper -I "trace -P TCP -m 5 $TEST_HOST_V4"
+scamper -I "trace -P TCP-ACK -m 5 $TEST_HOST_V4"
+
+echo "${BORDER}Doing some ipv6 traces${BORDER}"
+scamper -I "trace -P UDP -m 5 $TEST_HOST_V6"
+scamper -I "trace -P ICMP -m 5 $TEST_HOST_V6"
+scamper -I "trace -P UDP-paris -m 5 $TEST_HOST_V6"
+scamper -I "trace -P ICMP-paris -m 5 $TEST_HOST_V6"
+scamper -I "trace -P TCP -m 5 $TEST_HOST_V6"
+scamper -I "trace -P TCP-ACK -m 5 $TEST_HOST_V6"
+
+echo "${BORDER}Doing some ipv4 pings${BORDER}"
+scamper -I "ping -c 2 -P icmp-echo $TEST_HOST_V4"
+scamper -I "ping -c 2 -P icmp-time $TEST_HOST_V4"
+scamper -I "ping -c 2 -P tcp-syn $TEST_HOST_V4"
+scamper -I "ping -c 2 -P tcp-ack $TEST_HOST_V4"
+scamper -I "ping -c 2 -P tcp-ack-sport $TEST_HOST_V4"
+scamper -I "ping -c 2 -P udp $TEST_HOST_V4"
+scamper -I "ping -c 2 -P udp-dport $TEST_HOST_V4"
+
+echo "${BORDER}Doing some ipv6 pings${BORDER}"
+scamper -I "ping -c 2 -P icmp-echo $TEST_HOST_V6"
+scamper -I "ping -c 2 -P icmp-time $TEST_HOST_V6"
+scamper -I "ping -c 2 -P tcp-syn $TEST_HOST_V6"
+scamper -I "ping -c 2 -P tcp-ack $TEST_HOST_V6"
+scamper -I "ping -c 2 -P tcp-ack-sport $TEST_HOST_V6"
+scamper -I "ping -c 2 -P udp $TEST_HOST_V6"
+scamper -I "ping -c 2 -P udp-dport $TEST_HOST_V6"
+
+echo "${BORDER}Done with work out${BORDER}"
