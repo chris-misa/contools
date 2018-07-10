@@ -1,0 +1,30 @@
+#!/bin/bash
+
+#
+# Script to exercise yarrp container for docker-slim
+# Yarrps a test list of addresses exercising various features
+#
+# 2018, Chris Misa
+#
+
+TEST_INPUT_V4=/tests/targets4
+TEST_INPUT_V6=/tests/targets6
+
+BORDER="----------------"
+
+# basic ipv4 testing
+echo "${BORDER}Running some ipv4 traces${BORDER}"
+yarrp -i $TEST_INPUT_V4 -t TCP_ACK -o output_ack.yrp
+yarrp -i $TEST_INPUT_V4 -t TCP_SYN -o output_syn.yrp
+yarrp -i $TEST_INPUT_V4 -t UDP -o output_udp.yrp
+yarrp -i $TEST_INPUT_V4 -t ICMP -o output_icmp.yrp
+
+# basic ipv6 testing
+echo "${BORDER}Running some ipv6 traces${BORDER}"
+yarrp -i $TEST_INPUT_V6 -I eth0 -t TCP6_ACK -o output_ack.yrp
+yarrp -i $TEST_INPUT_V6 -I eth0 -t TCP6_SYN -o output_syn.yrp
+yarrp -i $TEST_INPUT_V6 -I eth0 -t UDP6 -o output_udp.yrp
+yarrp -i $TEST_INPUT_V6 -I eth0 -t ICMP6 -o output_icmp.yrp
+
+
+echo "${BORDER}Done with work out${BORDER}"
