@@ -18,7 +18,13 @@ and sends the results to stdout.
 # Slimmification
 
 Dependencies removed by docker-slim and manually added:
-
+1. /etc/ld.so.cache
+2. /etc/nsswitch.conf
+3. /etc/passwd
+4. /var/
+5. /etc/localtime
+6. /etc/resolv.conf
+7. /etc/hosts
 
 # Notes
 
