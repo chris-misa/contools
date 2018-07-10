@@ -12,8 +12,8 @@ Minified and pushed:
 - [x] ping
 - [x] owamp
 - [x] traceroute
-- [ ] scamper
-- [ ] yarrp
+- [x] scamper
+- [x] yarrp
 - [x] iperf
 
 # Notes
