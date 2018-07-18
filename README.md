@@ -1,20 +1,7 @@
 # Containerized wrappings of internet measurement tools
 
 This repo contains only dockerfiles for setting up 'fat' images of select tools.
-These 'fat' images are to be run through docker-slim to produce lean, quick deployments
-of a standard toolset.
-
-Minified images are collecting at: hub.docker.com/r/chrismisa/contools/
-
-# Progress
-
-Minified and pushed:
-- [x] ping
-- [x] owamp
-- [x] traceroute
-- [x] scamper
-- [x] yarrp
-- [x] iperf
+Minified images are found at hub.docker.com/r/chrismisa/contools/
 
 # Notes
 
@@ -25,18 +12,62 @@ tests which might be sensitive to clock issues.
 Bash scripts can be read and executed from a bind-mounted directory.
 See container's documention.
 
-# Planning
+# Experiemental Targets
 
-## Generate Canonic Docker-slim Test-cases
+## Time and Space Overheads
 
-These test cases should use all flags and functions of the tool so as to
-maximally expose the tool's dependencies to docker-slim.
-Given that there is a batch processing system, these test cases can be
-specified on the command line of docker-slim using, perhaps, --cmd=...
+### Installed memory reqs
+* Container:
+  1. docker.io package size
+  2. container image size
+* Native:
+  1. tool binary size
+  2. (build framework size)
+### Install time
+* Container:
+  1. apt-get install docker.io
+  2. docker pull chrismisa/contools:\<container\>
+* Native:
+  1. apt-get install \<tool\>
+OR
+  2. download and make time . . . (highly variable)
+### Running memory reqs
+Over the execution time of the script
+* Container:
+  1. docker daemon system
+  2. container running script
+* Native:
+  1. running script
+### Running time
+* Container:
+  1. Starting daemon
+  2. Starting container
+  3. Running measurment script
+  4. Stopping container
+  5. Stopping daemon
+* Native:
+  1. Running measurement script
 
-## Experiements
+## Measurement Bias
 
-### Container Impact
+### ping
+* RTT
 
-1. time and space overheads of container system
-2. bias introduced on measurment
+### owamp
+* OWT
+
+### traceroute
+* RTT
+* accuracy of trace
+
+### yarrp
+* accuracy of map
+* ?
+
+### iperf
+* through put
+
+### scamper
+* RTT
+* acuracy of trace
+* ?
